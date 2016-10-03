@@ -1,0 +1,9 @@
+<div class="list-group" *ngIf="service.Mytasks">
+    <div *ngFor="let task of service.Mytasks">
+        <br>
+        <a routerLink="taskDetails/{{task.id}}" class="list-group-item" (click)="onSelectedTask(task)">
+            <h4 class="list-group-item-heading">{{task.TaskName}}</h4>
+            <p class="list-group-item-text" *ngIf="task.TaskDesc">{{task.TaskDesc}}</p>
+        </a>
+    </div>
+</div>

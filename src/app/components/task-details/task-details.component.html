@@ -1,0 +1,13 @@
+<div class="jumbotron">
+    <div class="container" *ngIf="service.selectedTask">
+        <h2 *ngIf="service.selectedTask.TaskName">{{service.selectedTask.TaskName}}</h2>
+        <p *ngIf="service.selectedTask.TaskDesc">{{service.selectedTask.TaskDesc}}</p>
+        <p *ngIf="service.selectedTask.autor"><strong>Author:</strong> {{service.selectedTask.autor}}</p>
+        <p *ngIf="service.selectedTask.DueDate"><strong>Due Date:</strong> {{service.selectedTask.DueDate | date: 'MM/dd/yy'}}</p>
+        <p>
+            <a class="btn btn-primary btn-lg">Add Note</a>
+            <a class="btn btn-danger btn-lg">Delete</a>
+            <a class="btn btn-default btn-lg">Edit</a>
+        </p>
+    </div>
+</div>
