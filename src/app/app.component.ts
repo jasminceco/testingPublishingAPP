@@ -7,7 +7,7 @@ import { TaskerService } from './services/service';
 })
 export class AppComponent  {
     constructor(public service :TaskerService,){
-        // this.service.getTaskerToken('jasminc', 'test123')
+        this.service.getTaskerToken('jasminc', 'test123')
 
     }
      ngOnInit(){
