@@ -13,6 +13,7 @@ export class TaskListComponent {
     onSelectedTask(task: any){
         console.log(task)
         this.service.selectedTask = task
+        this.service.getNotesForTask(task.id)
 
     }
 }

@@ -1,23 +1,23 @@
-<form class="form-horizontal">
+<form class="form-horizontal" [formGroup]="form" (ngSubmit)="onSubmit()">
     <fieldset>
         <legend>Add Task</legend>
         <div class="form-group">
             <label for="inputEmail" class="col-lg-2 control-label">Task name</label>
             <div class="col-lg-10">
-                <input type="text" class="form-control" id="taskName" placeholder="add task ..">
+                <input type="text" class="form-control" id="taskName" formControlName="TaskName" placeholder="add task ..">
             </div>
         </div>
         <div class="form-group">
             <label for="textArea" class="col-lg-2 control-label">Task Description</label>
             <div class="col-lg-10">
-                <textarea class="form-control" rows="3" id="textArea" placeholder="add decsription.."></textarea>
+                <textarea class="form-control" rows="3" id="textArea" formControlName="TaskDesc" placeholder="add decsription.."></textarea>
                 <span class="help-block">Please enter decription to the task, this field is not mandatory.</span>
             </div>
         </div>
         <div class="form-group">
             <label for="textArea" class="col-lg-2 control-label">Due Date</label>
             <div class="col-lg-10">
-                <input type="date" name="" id="input1/(\w+)/\u\1/g" class="form-control" value="" required="required" title="">
+                <input type="date" name="" id="input1/(\w+)/\u\1/g" class="form-control" formControlName="DueDate" value="" title="">
 
             </div>
         </div>
@@ -26,12 +26,9 @@
             <div class="col-lg-10 col-lg-offset-2">
                 <label for="textArea" class="control-label">Asigne Task to User... </label>
                 <br>
-                <select multiple="" class="form-control">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                <select multiple="" class="form-control" formControlName="ID">
+                    <option *ngFor="let user of service.Myusers" value="{{user.id}}">{{user.FirstName}} {{user.LastName}}</option>
+                   
                 </select>
             </div>
         </div>
@@ -39,7 +36,7 @@
         <div class="form-group">
             <div class="col-lg-10 col-lg-offset-2">
                 <button type="reset" class="btn btn-default">Cancel</button>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" [disabled]="!form.valid" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </fieldset>

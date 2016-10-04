@@ -7,7 +7,7 @@ import { TaskerService } from './services/service';
 })
 export class AppComponent  {
     constructor(public service :TaskerService,){
-        this.service.getTaskerToken('jasminc', 'test123')
+        // this.service.getTaskerToken('jasminc', 'test123')
 
     }
      ngOnInit(){
@@ -16,12 +16,14 @@ export class AppComponent  {
         console.log('CurrUser exist')
         console.log(this.service.curUser.token)
        this.service.getTasks()
+       this.service.getUsers()
 
       }else{
         this.service.curUser  = JSON.parse(localStorage.getItem('token'))
         console.log('CurrUser doesnt exit added')
         console.log(this.service.curUser.token)
          this.service.getTasks()
+         this.service.getUsers()
 
       }
       

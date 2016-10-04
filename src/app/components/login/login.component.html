@@ -1,0 +1,9 @@
+<form class="navbar-form navbar-right" role="search" *ngIf="!service.hasUser">
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="username" [(ngModel)]="username" name="username">
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" placeholder="password" required [(ngModel)]="password" name="password">
+    </div>
+    <button type="submit" class="btn btn-default" (click)="onLogIn()">Submit</button>
+</form>

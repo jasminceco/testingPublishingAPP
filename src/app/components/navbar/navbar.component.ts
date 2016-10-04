@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AboutComponent }  from '../about/about.component';
+import { TaskerService } from '../../services/service';
 
 
 @Component({
@@ -7,4 +8,14 @@ import { AboutComponent }  from '../about/about.component';
     templateUrl: 'navbar.component.html',
   
 })
-export class NavbarComponent { }
+export class NavbarComponent {
+
+    constructor( public service :TaskerService,){
+      
+  
+    }
+    onLogOutUser(){
+        this.service.logOutUser()
+    }
+
+ }

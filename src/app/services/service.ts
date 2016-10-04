@@ -15,7 +15,7 @@ public curUser: CurUser;
 public myapi: string = "Jasmin"
 public Mytasks: MyTasks[];
 public selectedTask: MyTasks;
-public Myusers: Users[];
+public Myusers: Users[] = [];
 public Mynotes: MyNotes[];
 public hasUser: boolean = false
 
@@ -130,9 +130,8 @@ public hasUser: boolean = false
               console.log('there is no token')
         }else{
            var insParameters: any;
-           console.log(task.OwnerUserID)
-
-            if (task.OwnerUserID === undefined){
+         
+            if (task.ID === null){
                 insParameters = {
                 "TaskName": task.TaskName,
                 "TaskDesc": task.TaskDesc,
@@ -147,7 +146,7 @@ public hasUser: boolean = false
                 "TaskDesc": task.TaskDesc,
                 "Status": 0,
                 "DueDate": task.DueDate,
-                "OwnerUserID": task.OwnerUserID
+                "OwnerUserID": task.ID[0]
                 }
             }
            
@@ -167,7 +166,7 @@ public hasUser: boolean = false
         }   
     }
 
-    editTask(id: number,task: any){
+    editTask(task: any){
          if (JSON.parse(localStorage.getItem('token')) === null){
               console.log('there is no token')
         }else{
@@ -175,8 +174,10 @@ public hasUser: boolean = false
          var headers = new Headers();
             headers.append('Content-Type','application/json');
             headers.append( "Authorization", authheader)
+         
+            console.log(task)
 
-        return this._http.put(`${this.taskerURL}task/${id}`, task, {headers: headers})
+        return this._http.put(`${this.taskerURL}task/${task.id}`, task, {headers: headers})
                     .map(res => res.json()).subscribe(data => {
                       console.log(data)
                       this.getTasks()
@@ -279,10 +280,16 @@ public hasUser: boolean = false
              headers.append( "Authorization", authheader)
        
         return this._http.get(`${this.taskerURL}allusers`, {headers: headers}).map(res => res.json()).subscribe(users => {
-             this.Myusers = users
-             console.log("users are")
-             console.log(this.Myusers)
-       console.log(users)
+           console.log(users)
+            for (let user of users) {
+                if (user.id !== this.curUser.user.id){
+                    console.log(user)
+                    this.Myusers.push(user)
+                }
+            }
+             
+            
+           console.log(this.Myusers)
        }, err => console.log(err), () => console.log('Get all Users'));
         } 
     }

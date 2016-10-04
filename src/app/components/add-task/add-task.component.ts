@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormBuilder } 
+    from '@angular/forms';
+import { TaskerService } from '../../services/service';
 
 @Component({
     
@@ -6,4 +9,26 @@ import { Component } from '@angular/core';
     templateUrl: 'add-task.component.html'
   
 })
-export class AddTaskComponent { }
+export class AddTaskComponent { 
+      form: FormGroup;
+    
+    
+    TaskName = new FormControl("", Validators.required);
+    ID = new FormControl()
+
+    constructor(public fb: FormBuilder, public service :TaskerService,){
+         this.form = fb.group({
+            "TaskName": this.TaskName,
+            "TaskDesc":["", Validators.required], 
+            "DueDate": ['', Validators.required],
+             "ID": []
+        });
+
+    }
+    onSubmit() {
+        console.log("model-based form submitted");
+        console.log(this.form.value);
+        this.service.addTask(this.form.value)
+          this.form.reset();
+    }
+}

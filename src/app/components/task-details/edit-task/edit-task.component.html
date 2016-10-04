@@ -1,0 +1,57 @@
+<a class="btn btn-default btn-lg" data-toggle="modal" href='#modal-edit'>Edit</a>
+<div class="modal fade" id="modal-edit">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Edit Task</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" (ngSubmit)="onSubmit()">
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="inputEmail" class="col-lg-2 control-label">Task name</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="taskName" [(ngModel)]="service.selectedTask.TaskName" name="TaskName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="textArea" class="col-lg-2 control-label">Task Description</label>
+                            <div class="col-lg-10">
+                                <textarea class="form-control" rows="3" id="textArea" [(ngModel)]="service.selectedTask.TaskDesc" name="TaskDesc"></textarea>
+                                <span class="help-block">Please enter decription to the task, this field is not mandatory.</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="textArea" class="col-lg-2 control-label">Due Date</label>
+                            <div class="col-lg-10">
+                                <input type="date" name="DueDate" class="form-control" [(ngModel)]="service.selectedTask.DueDate">
+
+
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <div class="col-lg-10 col-lg-offset-2">
+                                <label for="textArea" class="control-label">Asigne Task to User... </label>
+                                <br>
+                                <select multiple="" name="OwnerUserID" class="form-control" [(ngModel)]="ID">
+                                     <option *ngFor="let user of service.Myusers" value="{{user.id}}">{{user.FirstName}} {{user.LastName}}</option>
+                   
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" (click)="onSubmit()" data-dismiss="modal">Edit Task</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<p>

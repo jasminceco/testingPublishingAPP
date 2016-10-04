@@ -17,14 +17,21 @@ export class TaskDetailsComponent implements OnInit {
     ngOnInit(){
         if (this.service.selectedTask === undefined){
             this.router.params.subscribe( params => {
-        this.taskID = params['id']
-        console.log(`task id is ${this.taskID}`)
-        
-        })
-        this.service.getTask(this.taskID)
+            this.taskID = params['id']
+            console.log(`task id is ${this.taskID}`)
+            })
+            this.service.getTask(this.taskID)
+            this.service.getNotesForTask(this.taskID)
 
-        }
-         
-       
+        } 
+    }
+
+    backButtonPresed(){
+        this.service.selectedTask = null
+        this.service.Mynotes = null
+    }
+    onTaskDelete(id){
+        this.service.deleteTask(id)
+
     }
 }
