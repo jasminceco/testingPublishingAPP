@@ -32,6 +32,8 @@ public hasUser: boolean = false
         }
         var headers = new Headers();
         headers.append('Content-Type','application/json');
+        
+
         return this._http.post(`${this.taskerURL}login`, insParameter, {headers:headers})
             .map(res => res.json()).subscribe(user => {
         console.log(user)
@@ -62,6 +64,7 @@ public hasUser: boolean = false
          var headers = new Headers();
              headers.append('Content-Type','application/json');
              headers.append( "Authorization", authheader)
+             
        
         return this._http.get(`${this.taskerURL}task`, {headers: headers}).map(res => res.json()).subscribe(tasks => {
              this.Mytasks = tasks.tasks
