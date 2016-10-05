@@ -13,7 +13,7 @@ export class TaskerService{
 taskerURL: string = "https://damp-beach-94332.herokuapp.com/"
 public curUser: CurUser;
 public myapi: string = "Jasmin"
-public Mytasks: MyTasks[];
+public Mytasks: MyTasks[] = []
 public selectedTask: MyTasks;
 public Myusers: Users[] = [];
 public Mynotes: MyNotes[];
@@ -127,31 +127,26 @@ public hasUser: boolean = false
         }
     }
 
-    addTask(task: any){
+    addTask(task: any, OwnerUserID: number = null ){
 
          if (JSON.parse(localStorage.getItem('token')) === null){
               console.log('there is no token')
         }else{
-           var insParameters: any;
-         
-            if (task.ID === null){
-                insParameters = {
-                "TaskName": task.TaskName,
-                "TaskDesc": task.TaskDesc,
-                "Status": 0,
-                "DueDate": task.DueDate,
-                "OwnerUserID": this.curUser.user.id,
-                }
-            
+          var tempOwnerUserID: any;
+
+            if (OwnerUserID === null){
+                tempOwnerUserID = this.curUser.user.id
             } else {
-                insParameters = {
+                tempOwnerUserID = OwnerUserID[0]
+            }
+
+           var insParameters = {
                 "TaskName": task.TaskName,
                 "TaskDesc": task.TaskDesc,
                 "Status": 0,
                 "DueDate": task.DueDate,
-                "OwnerUserID": task.ID[0]
+                "OwnerUserID": tempOwnerUserID
                 }
-            }
            
          var authheader = `Basic ${this.curUser.token}`
          var headers = new Headers();
@@ -169,7 +164,7 @@ public hasUser: boolean = false
         }   
     }
 
-    editTask(task: any){
+    editTask(OwnerUserID: number = undefined){
          if (JSON.parse(localStorage.getItem('token')) === null){
               console.log('there is no token')
         }else{
@@ -177,10 +172,27 @@ public hasUser: boolean = false
          var headers = new Headers();
             headers.append('Content-Type','application/json');
             headers.append( "Authorization", authheader)
-         
-            console.log(task)
+            var tempOwnerUserID: any;
 
-        return this._http.put(`${this.taskerURL}task/${task.id}`, task, {headers: headers})
+            if (OwnerUserID === undefined){
+            tempOwnerUserID = this.curUser.user.id
+            } else {
+                tempOwnerUserID = OwnerUserID[0]
+            }
+
+            var insParameter = {
+            "id" : this.selectedTask.id,
+            "TaskName": this.selectedTask.TaskName,
+            "TaskDesc": this.selectedTask.TaskDesc,
+            "Status": 0,
+            "DueDate": this.selectedTask.DueDate,
+            "OwnerUserID": tempOwnerUserID,
+            "AssignedToUserID": this.curUser.user.id
+            }
+         
+            console.log(insParameter)
+
+        return this._http.put(`${this.taskerURL}task/${this.selectedTask.id}`, insParameter, {headers: headers})
                     .map(res => res.json()).subscribe(data => {
                       console.log(data)
                       this.getTasks()
@@ -188,7 +200,7 @@ public hasUser: boolean = false
         }   
     }
 
-    deleteTaskNote(id: number, taskID: number){
+    deleteTaskNote(id: number, taskID: number = this.selectedTask.id){
         if (JSON.parse(localStorage.getItem('token')) === null){
               console.log('there is no token')
         }else{
@@ -222,6 +234,35 @@ public hasUser: boolean = false
                     .map(res => res.json()).subscribe(data => {
                       console.log(data)
                       this.getTasks()
+                    }, err => console.log(err), () => console.log('Task status changed'));        
+        }   
+    }
+     isRead(id: number){
+         if (JSON.parse(localStorage.getItem('token')) === null){
+              console.log('there is no token')
+        }else{
+         var authheader = `Basic ${this.curUser.token}`
+         var headers = new Headers();
+            headers.append('Content-Type','application/json');
+            headers.append( "Authorization", authheader)
+
+            console.log(authheader)
+
+        return this._http.put(`${this.taskerURL}task/${id}/markasread`,{} ,{headers: headers})
+                    .map(res => res.json()).subscribe(taskUpd => {
+                        console.log('updated task')
+                      console.log(taskUpd)
+
+                      for (let task of this.Mytasks){
+                          if (task.id === id){
+                              console.log(task.id)
+                              console.log(id)
+                              if (taskUpd.IsRead){
+                                  task.IsRead = taskUpd.IsRead
+                              }
+                          }
+                      }
+                    
                     }, err => console.log(err), () => console.log('Task status changed'));        
         }   
     }
@@ -283,16 +324,14 @@ public hasUser: boolean = false
              headers.append( "Authorization", authheader)
        
         return this._http.get(`${this.taskerURL}allusers`, {headers: headers}).map(res => res.json()).subscribe(users => {
-           console.log(users)
+           
             for (let user of users) {
                 if (user.id !== this.curUser.user.id){
-                    console.log(user)
+                   
                     this.Myusers.push(user)
                 }
             }
-             
             
-           console.log(this.Myusers)
        }, err => console.log(err), () => console.log('Get all Users'));
         } 
     }

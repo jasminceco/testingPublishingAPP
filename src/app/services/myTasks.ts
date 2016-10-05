@@ -9,6 +9,7 @@ export class MyTasks {
     autor: string ;
     createdAt: string ;
     id: number;
+    IsRead:string
     owner: string ;
     updatedAt: string ;
     notescnt: number;

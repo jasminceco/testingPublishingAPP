@@ -11,11 +11,14 @@ import {ActivatedRoute} from '@angular/router'
 export class TaskNotesComponent implements OnInit { 
     taskID: number;
     constructor(public service :TaskerService, private router: ActivatedRoute,){
-       
+    
 
     }
     ngOnInit(){
    
        
+    }
+    deleteNote(id){
+        this.service.deleteTaskNote(id)
     }
 }

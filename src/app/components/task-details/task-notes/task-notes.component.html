@@ -1,15 +1,36 @@
 <div class="row" *ngFor="let note of service.Mynotes">
     <div class="col-md-6">
         <div *ngIf="note.CreatedBy == service.curUser.user.id">
-            <h4> {{note.NoteBody}}</h4>
+            <h6>You ({{note.createdAt | date: short}})</h6>
+            <div class="alert alert-info" role="alert">
+                <h4> {{note.NoteBody}}</h4>
+            </div>
 
+            <button type="button" class="btn btn-xs btn-danger" (click)="deleteNote(note.id)">Delete</button>
+            <hr>
         </div>
 
     </div>
+
     <div class="col-md-6">
         <div *ngIf="note.CreatedBy != service.curUser.user.id">
-            <h4> {{note.NoteBody}}</h4>
+            <div *ngIf="service.Myusers">
+                <div *ngFor="let user of service.Myusers">
+                    <div *ngIf="user.id == note.CreatedBy">
+                        <h6> <strong>{{user.FirstName}} {{user.LastName}}</strong> ({{note.createdAt | date: short}}) </h6>
+                    </div>
 
+                </div>
+            </div>
+
+            <div class="alert alert-warning" role="alert">
+                <div>
+                    <h4> {{note.NoteBody}} </h4>
+                </div>
+            </div>
+            <button type="button" class="btn btn-xs btn-danger" (click)="deleteNote(note.id)">Delete</button>
+            <hr>
         </div>
     </div>
+
 </div>

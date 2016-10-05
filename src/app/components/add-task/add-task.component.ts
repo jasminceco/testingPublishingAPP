@@ -26,9 +26,7 @@ export class AddTaskComponent {
 
     }
     onSubmit() {
-        console.log("model-based form submitted");
-        console.log(this.form.value);
-        this.service.addTask(this.form.value)
-          this.form.reset();
+        this.service.addTask(this.form.value, this.form.value.ID)
+        this.form.reset();
     }
 }
