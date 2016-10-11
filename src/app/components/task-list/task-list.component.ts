@@ -11,6 +11,8 @@ export class TaskListComponent implements OnInit {
     constructor(public service :TaskerService,){
 
     }
+    status:string = 'All tasks'
+
     onSelectedTask(task: any){
         console.log(task)
         this.service.selectedTask = task
@@ -37,5 +39,22 @@ export class TaskListComponent implements OnInit {
         console.log(id)
         this.service.deleteTask(id)
 
+    }
+    onStatusOpen(){
+        this.status = 'Open Tasks'
+         this.service.getOpenTasks()
+
+    }
+    onStatusClose(){
+         this.status = 'Completed Tasks'
+   this.service.getClosedTasks()
+    }
+    onStatusAll(){
+        this.status = 'All tasks'
+        this.service.getTasks()
+    }
+    onOVERDUE(){
+          this.status = 'Over due tasks'
+        this.service.getOverduetasksTasks()
     }
 }

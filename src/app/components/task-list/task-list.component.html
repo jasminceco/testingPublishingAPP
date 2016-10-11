@@ -1,3 +1,18 @@
+<div class="dropdown" *ngIf="service.Mytasks">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    {{status}}
+
+    <span class="caret"></span>
+  </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li><a (click)="onStatusOpen()">OPEN</a></li>
+        <li><a (click)="onStatusClose()">COMPLETED</a></li>
+        <li><a (click)="onOVERDUE()">OVERDUE TASKS</a></li>
+        <li><a (click)="onStatusAll()">ALL</a></li>
+
+    </ul>
+</div>
+
 <div class="list-group" *ngIf="service.Mytasks">
     <div *ngFor="let task of service.Mytasks">
 

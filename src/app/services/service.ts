@@ -73,6 +73,61 @@ public hasUser: boolean = false
        }, err => console.log(err), () => console.log('Get tasks'));
         } 
     }
+        getOpenTasks(){
+        
+        if (JSON.parse(localStorage.getItem('token')) === null){
+              console.log('there is no token to load')
+        }else{
+         var authheader = `Basic ${this.curUser.token}`;
+         var headers = new Headers();
+             headers.append('Content-Type','application/json');
+             headers.append( "Authorization", authheader)
+             
+       
+        return this._http.get(`${this.taskerURL}task?status=0`, {headers: headers}).map(res => res.json()).subscribe(tasks => {
+             this.Mytasks = tasks.tasks
+             this.hasUser = true
+       console.log(tasks.tasks)
+       }, err => console.log(err), () => console.log('Get tasks'));
+        } 
+    }
+    getClosedTasks(){
+        
+        if (JSON.parse(localStorage.getItem('token')) === null){
+              console.log('there is no token to load')
+        }else{
+         var authheader = `Basic ${this.curUser.token}`;
+         var headers = new Headers();
+             headers.append('Content-Type','application/json');
+             headers.append( "Authorization", authheader)
+             
+       
+        return this._http.get(`${this.taskerURL}task?status=1`, {headers: headers}).map(res => res.json()).subscribe(tasks => {
+             this.Mytasks = tasks.tasks
+             this.hasUser = true
+       console.log(tasks.tasks)
+       }, err => console.log(err), () => console.log('Get tasks'));
+        } 
+    }
+      getOverduetasksTasks(){
+        
+        if (JSON.parse(localStorage.getItem('token')) === null){
+              console.log('there is no token to load')
+        }else{
+         var authheader = `Basic ${this.curUser.token}`;
+         var headers = new Headers();
+             headers.append('Content-Type','application/json');
+             headers.append( "Authorization", authheader)
+             
+       
+        return this._http.get(`${this.taskerURL}task?overduetasks=1`, {headers: headers}).map(res => res.json()).subscribe(tasks => {
+             this.Mytasks = tasks.tasks
+             this.hasUser = true
+       console.log(tasks.tasks)
+       }, err => console.log(err), () => console.log('Get tasks'));
+        } 
+    }
+    
 
      getTask(id: number){
         
