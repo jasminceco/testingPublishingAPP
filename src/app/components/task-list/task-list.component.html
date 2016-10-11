@@ -16,6 +16,8 @@
                         <li role="presentation"> ---> </li>
                         <li role="presentation"> {{task.owner}}</li>
                         <li role="presentation">[ Notes <span class="badge">{{task.notescnt}}</span> ]</li>
+                        <li role="presentation">[ Created At: <span>{{task.createdAt | amCalendar}}}</span> ]</li>
+                        <li role="presentation">[ DueDate : <span>{{task.DueDate | amDifference : today : 'days'}} days</span> ]</li>
 
                     </ul>
                 </div>
@@ -53,6 +55,8 @@
                         <li role="presentation"> ---> </li>
                         <li role="presentation"> {{task.owner}}</li>
                         <li role="presentation">[ Notes <span class="badge">{{task.notescnt}}</span> ]</li>
+                        <li role="presentation">[ Created At: <span>{{task.createdAt | amCalendar}}}</span> ]</li>
+                        <li role="presentation">[ DueDate : <span>{{task.DueDate | amDifference : today : 'days'}} days</span> ]</li>
 
                     </ul>
                 </div>

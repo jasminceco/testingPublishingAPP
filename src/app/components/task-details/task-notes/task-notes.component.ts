@@ -3,6 +3,7 @@ import { TaskerService } from '../../../services/service';
 import {ActivatedRoute} from '@angular/router'
 
 
+
 @Component({
     selector: 'task-notes',
     templateUrl: 'task-notes.component.html'

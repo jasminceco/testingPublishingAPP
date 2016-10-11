@@ -1,7 +1,7 @@
 <div class="row" *ngFor="let note of service.Mynotes">
     <div class="col-md-6">
         <div *ngIf="note.CreatedBy == service.curUser.user.id">
-            <h6>You ({{note.createdAt | date: short}})</h6>
+            <h6>You ({{note.createdAt | amCalendar}})</h6>
             <div class="alert alert-info" role="alert">
                 <h4> {{note.NoteBody}}</h4>
             </div>
@@ -17,7 +17,8 @@
             <div *ngIf="service.Myusers">
                 <div *ngFor="let user of service.Myusers">
                     <div *ngIf="user.id == note.CreatedBy">
-                        <h6> <strong>{{user.FirstName}} {{user.LastName}}</strong> ({{note.createdAt | date: short}}) </h6>
+                        <h6> <strong>{{user.FirstName}} {{user.LastName}}</strong>
+                            <b>{{user.createdAt | amCalendar}}</b></h6>
                     </div>
 
                 </div>

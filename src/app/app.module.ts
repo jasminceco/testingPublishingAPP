@@ -20,6 +20,8 @@ import { LogInComponent }      from './components/login/login.component';
 import { TaskNotesComponent }      from './components/task-details/task-notes/task-notes.component';
 import { DatepickerModule } from 'angular2-material-datepicker'
 import {TaskerService} from './services/service'
+import {AuthGuard} from './services/auth.guard.service'
+import { MomentModule} from 'angular2-moment'
 
 
 
@@ -43,9 +45,9 @@ import {TaskerService} from './services/service'
     HttpModule, 
     TaskerRoutingModule,
     ReactiveFormsModule, 
-    DatepickerModule
+    DatepickerModule, MomentModule
   ],
-  providers: [TaskerService],
+  providers: [TaskerService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

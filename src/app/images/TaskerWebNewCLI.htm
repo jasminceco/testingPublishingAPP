@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:4200/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>TaskerWebNewCLI</title>
+    <!--<base href="/">--><base href=".">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./TaskerWebNewCLI_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="./TaskerWebNewCLI_files/bootstrap.min(1).css">
+    <link rel="icon" type="image/x-icon" href="http://localhost:4200/favicon.ico">
+<style type="text/css">/* You can add global styles to this file, and also import other style files */</style><style>.isRead[_ngcontent-wqm-7] {
+    color: lightgray;
+}
+
+.notRead[_ngcontent-wqm-7] {
+    color: pink;
+}</style></head>
+
+<body>
+    <!--<base href="/">--><base href=".">
+    <app-root><navbar><nav class="navbar navbar-inverse ">
+    <div class="container">
+        <div class="navbar-header">
+            <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+            <a class="navbar-brand" href="http://localhost:4200/">myTasker</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a routerlink="/" routerlinkactive="active" ng-reflect-router-link="/" ng-reflect-router-link-active="active" ng-reflect-href="/" href="http://localhost:4200/" class="active">Home</a></li>
+                <li><a routerlink="/about" routerlinkactive="active" ng-reflect-router-link="/about" ng-reflect-router-link-active="active" ng-reflect-href="/about" href="http://localhost:4200/about">Setings</a></li>
+            </ul>
+            <login><!--template bindings={
+  "ng-reflect-ng-if": "true"
+}--><form class="navbar-form navbar-right ng-untouched ng-pristine ng-invalid" role="search">
+    <div class="form-group">
+        <input class="form-control ng-untouched ng-pristine ng-valid" name="username" placeholder="username" type="text" ng-reflect-name="username">
+    </div>
+    <div class="form-group">
+        <input class="form-control ng-untouched ng-pristine ng-invalid" name="password" placeholder="password" required="" type="password" ng-reflect-required="" ng-reflect-name="password">
+    </div>
+    <button class="btn btn-default" type="submit">Submit</button>
+</form></login>
+            <!--template bindings={
+  "ng-reflect-ng-if": null
+}-->
+        </div>
+        
+    </div>
+</nav></navbar>
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 ">
+                <add-task><form class="form-horizontal ng-untouched ng-pristine ng-invalid" ng-reflect-form="[object Object]">
+    <fieldset>
+        <legend>Add Task</legend>
+        <div class="form-group">
+            <label class="col-lg-2 control-label" for="inputEmail">Task name</label>
+            <div class="col-lg-10">
+                <input class="form-control ng-untouched ng-pristine ng-invalid" formcontrolname="TaskName" id="taskName" placeholder="add task .." type="text" ng-reflect-name="TaskName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label" for="textArea">Task Description</label>
+            <div class="col-lg-10">
+                <textarea class="form-control ng-untouched ng-pristine ng-invalid" formcontrolname="TaskDesc" id="textArea" placeholder="add decsription.." rows="3" ng-reflect-name="TaskDesc"></textarea>
+                <span class="help-block">Please enter decription to the task, this field is not mandatory.</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label" for="textArea">Due Date</label>
+            <div class="col-lg-10">
+                <input class="form-control ng-untouched ng-pristine ng-invalid" formcontrolname="DueDate" id="input1/(\w+)/\u\1/g" name="" title="" type="date" value="" ng-reflect-name="DueDate">
+
+            </div>
+        </div>
+        <hr>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <label class="control-label" for="textArea">Asigne Task to User... </label>
+                <br>
+                <select class="form-control ng-untouched ng-pristine ng-valid" formcontrolname="ID" multiple="" ng-reflect-name="ID">
+                    <!--template bindings={
+  "ng-reflect-ng-for-of": ""
+}-->
+                   
+                </select>
+            </div>
+        </div>
+        <hr>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button class="btn btn-default" type="reset">Cancel</button>
+                <button class="btn btn-primary" type="submit" ng-reflect-disabled="true" disabled="">Submit</button>
+            </div>
+        </div>
+    </fieldset>
+</form></add-task>
+
+            </div>
+            <div class="col-md-8 ">
+                <router-outlet></router-outlet><about><br>
+<br>
+<task-list _nghost-wqm-7=""><!--template bindings={
+  "ng-reflect-ng-if": ""
+}--><div _ngcontent-wqm-7="" class="list-group">
+    <!--template bindings={
+  "ng-reflect-ng-for-of": ""
+}-->
+</div></task-list>
+
+<div class="row">
+    <!--template bindings={
+  "ng-reflect-ng-if": "true"
+}--><div class="col-md-10 col-md-offset-1">
+        <div class="carousel slide" data-ride="carousel" id="carousel-id">
+            <ol class="carousel-indicators">
+                <li class="" data-slide-to="0" data-target="#carousel-id"></li>
+                <li class="" data-slide-to="1" data-target="#carousel-id"></li>
+                <li class="active" data-slide-to="2" data-target="#carousel-id"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="item">
+                    <img alt="First slide" data-src="holder.js/900x500/auto/#777:#7a7a7a/text:First slide" src="./TaskerWebNewCLI_files/holder_a.jpg">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h3>Example headline.</h3>
+                            <p>Note: If you're viewing this page.</p>
+                            <p><a class="btn btn-lg btn-primary" href="http://localhost:4200/#" role="button">Sign up today</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <img alt="Second slide" data-src="holder.js/900x500/auto/#666:#6a6a6a/text:Second slide" src="./TaskerWebNewCLI_files/photography-website-trends-3.jpg">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h3>Another example headline.</h3>
+                            <p>Cras justo odio,lit.</p>
+                            <p><a class="btn btn-lg btn-primary" href="http://localhost:4200/#" role="button">Learn more</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item active">
+                    <img alt="Third slide" data-src="holder.js/900x500/auto/#555:#5a5a5a/text:Third slide" src="./TaskerWebNewCLI_files/1-a.png">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h3>One more for good measure.</h3>
+                            <p>Cras justo odio,.</p>
+                            <p><a class="btn btn-lg btn-primary" href="http://localhost:4200/#" role="button">Browse gallery</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="left carousel-control" data-slide="prev" href="http://localhost:4200/#carousel-id"><span class="glyphicon glyphicon-chevron-left"></span></a>
+            <a class="right carousel-control" data-slide="next" href="http://localhost:4200/#carousel-id"><span class="glyphicon glyphicon-chevron-right"></span></a>
+        </div>
+    </div>
+</div></about>
+            </div>
+        </div>
+    </div>
+</div></app-root>
+    <!-- jQuery library -->
+    <script src="./TaskerWebNewCLI_files/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="./TaskerWebNewCLI_files/bootstrap.min.js"></script>
+<script type="text/javascript" src="./TaskerWebNewCLI_files/inline.js"></script><script type="text/javascript" src="./TaskerWebNewCLI_files/styles.bundle.js"></script><script type="text/javascript" src="./TaskerWebNewCLI_files/main.bundle.js"></script>
+
+</body></html>

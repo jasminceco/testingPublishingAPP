@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AboutComponent }      from './components/about/about.component';
 import { WelcomeComponent }      from './components/wellcome/wellcome.component';
 import { TaskDetailsComponent }      from './components/task-details/task-details.component';
+import {AuthGuard} from './services/auth.guard.service'
 
 const routes: Routes = [
   {
@@ -12,11 +13,13 @@ const routes: Routes = [
   },
   {
     path: 'about',
-    component: AboutComponent
+    component: AboutComponent, 
+    canActivate: [AuthGuard]
   },
   {
     path: 'taskDetails/:id',
-    component: TaskDetailsComponent
+    component: TaskDetailsComponent,
+    canActivate: [AuthGuard]
   }
   
 ];
